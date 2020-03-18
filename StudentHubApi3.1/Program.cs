@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace StudentHubApi3._1
+namespace StudentHubApi1
 {
     public class Program
     {
