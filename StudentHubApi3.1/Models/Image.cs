@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentHubApi1.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace StudentHubApi1.Models
         public Question Question { get; set; }
         public Guid? SolutionId { get; set; }
         public Solution Solution { get; set; }
+
     }
 }

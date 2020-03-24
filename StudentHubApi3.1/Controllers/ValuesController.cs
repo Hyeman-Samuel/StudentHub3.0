@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StudentHubApi3._1.Controllers
@@ -12,6 +13,7 @@ namespace StudentHubApi3._1.Controllers
     {
         // GET api/values
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };

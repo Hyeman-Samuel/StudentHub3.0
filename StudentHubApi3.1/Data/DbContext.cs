@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StudentHubApi1.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentHubApi1
 {
-    public class DbContext: Microsoft.EntityFrameworkCore.DbContext
+    public class DbContext:IdentityDbContext<ApplicationUser>
     {
         public DbContext(DbContextOptions options):base(options)
         {
