@@ -78,26 +78,23 @@ namespace StudentHubApi1.Controllers
         }
 
         // GET: api/<controller>
-        [Route("GetAllComments")]
+        [Route("GetComments")]
         [HttpGet]
-        public IActionResult GetAllComment()
+        public IActionResult GetAllComment(Guid id)
         {
+            if (id != null)
+            {
+                return Ok(new { comment = _commentRepository.GetWithId(id) });
+            }
             return Ok(new {comments = _commentRepository.GetAll() });
         }
 
+
         [Route("GetAllCommentsForQuestion")]
         [HttpGet]
-        public IActionResult GetAllComment(Guid QuestionId)
+        public IActionResult GetCommentForQuestion(Guid QuestionId)
         {
             return Ok(new { comments = _commentRepository.FindWhere(x => x.Id == QuestionId) });
-        }
-
-        // GET api/<controller>/5
-        [Route("GetCommentById")]
-        [HttpGet]
-        public IActionResult Get(Guid id)
-        {
-            return Ok(new { comment = _commentRepository.GetWithId(id) });
         }
     }
 }

@@ -73,26 +73,23 @@ namespace StudentHubApi1.Controllers
         }
 
         // GET: api/<controller>
-        [Route("GetAllQuestions")]
+        [Route("GetQuestions")]
         [HttpGet]
-        public IActionResult GetAllQuestion()
+        public IActionResult GetQuestion(Guid id)
         {
+            if(id != null)
+            {
+                return Ok(new { question = _questionRepository.GetWithId(id) });
+            }
             return Ok(new { questions = _questionRepository.GetAll() });
         }
+
 
         [Route("GetAllQuestionsWithImages")]
         [HttpGet]
         public IActionResult GetAllQuestionsWithImages()
         {
             return Ok(new {questions= _questionRepository.GetAllQuestionsWithImages() });
-        }
-
-        // GET api/<controller>/5
-        [Route("GetQuestionById")]
-        [HttpGet]
-        public IActionResult Get(Guid id)
-        {
-            return Ok(new {question=_questionRepository.GetWithId(id) });
         }
     }
 }

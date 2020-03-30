@@ -78,14 +78,18 @@ namespace StudentHubApi1.Controllers
         // GET: api/<controller>
         [Route("GetAllSolutions")]
         [HttpGet]
-        public IActionResult GetAllQuestion()
+        public IActionResult GetAllQuestion(Guid id)
         {
+            if(id != null)
+            {
+                return Ok(new { solution = _solutionRepository.GetWithId(id) });
+            }
             return Ok(new { solutions = _solutionRepository.GetAll() });
         }
 
         [Route("GetAllSolutionsForQuestion")]
         [HttpGet]
-        public IActionResult GetAllQuestion(Guid QuestionId)
+        public IActionResult GetAllSolutionsForQuestion(Guid QuestionId)
         {
             return Ok(new { solutions = _solutionRepository.FindWhere(x=>x.Id==QuestionId) });
         }
@@ -97,12 +101,5 @@ namespace StudentHubApi1.Controllers
             return Ok(new { solutions = _solutionRepository.GetSolutionsWithImages()});
         }
 
-        // GET api/<controller>/5
-        [Route("GetSolutionById")]
-        [HttpGet]
-        public IActionResult Get(Guid id)
-        {
-            return Ok(new { solution = _solutionRepository.GetWithId(id) });
-        }
     }
 }

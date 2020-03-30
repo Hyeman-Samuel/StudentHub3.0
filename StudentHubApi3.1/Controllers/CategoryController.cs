@@ -22,7 +22,7 @@ namespace StudentHubApi1.Controllers
 
         [Route("AddCategory")]
         [HttpPost]
-        public async Task<IActionResult> AddCategory([FromBody]CategoryData value)
+        public IActionResult AddCategory([FromBody]CategoryData value)
         {
             var Category = new Category
             {
@@ -34,7 +34,7 @@ namespace StudentHubApi1.Controllers
         }
         [Route("EditCategory")]
         [HttpPut]
-        public async Task<IActionResult> Edit(Category value)
+        public IActionResult Edit(Category value)
         {
             _categoryRepository.EditEntity(value.Id, value);
             return Ok();
@@ -42,7 +42,7 @@ namespace StudentHubApi1.Controllers
 
         [Route("DeleteCategory")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteCategory(Guid CategoryId)
+        public IActionResult DeleteCategory(Guid CategoryId)
         {
             _categoryRepository.DeleteEntity(CategoryId);
             return Ok();
@@ -51,17 +51,13 @@ namespace StudentHubApi1.Controllers
         // GET: api/<controller>
         [Route("GetAllCategories")]
         [HttpGet]
-        public IEnumerable<Category> GetAllCategories()
+        public IActionResult GetAllCategories(Guid id)
         {
-            return _categoryRepository.GetAll();
-        }
-
-        // GET api/<controller>/5
-        [Route("GetCategorById")]
-        [HttpGet]
-        public Category Get(Guid id)
-        {
-            return _categoryRepository.GetWithId(id);
+            if(id != null)
+            {
+                return  Ok(_categoryRepository.GetWithId(id));
+            }
+            return Ok(_categoryRepository.GetAll());
         }
     }
 }
